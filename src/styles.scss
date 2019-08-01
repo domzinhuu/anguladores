@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+@font-face {
+  font-family: 'Avengers';
+  src: url(assets/fonts/avengers.otf) format('opentype');
+}
+
+.avengers {
+  font-family: 'Avengers';
+}
+
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+
+/* <div class="stats-box">
+            <p class="avengers text-white">For</p>
+            <p class="level-value">60</p>
+          </div>
+
+          <div class="stats-box bg-danger">
+            <p class="avengers text-white">Int</p>
+            <p class="level-value">65</p>
+          </div>
+
+          <div class="stats-box bg-danger">
+            <p class="avengers text-white">Dex</p>
+            <p class="level-value">99</p>
+          </div> */

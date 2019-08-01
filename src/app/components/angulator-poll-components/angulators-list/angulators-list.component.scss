@@ -1,0 +1,91 @@
+.card {
+  height: auto;
+  background-image: url('../../../../assets/img/avengers_logo.png');
+  background-position: right;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-blend-mode: soft-light;
+  box-shadow: 2px 2px 3px rgba($color: #212121, $alpha: 0.3);
+}
+
+.card:hover {
+  animation-name: card-animation;
+  animation-duration: .5s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  cursor: pointer;
+}
+
+@keyframes card-animation {
+  0% {
+    box-shadow: 2px 2px 3px rgba($color: #212121, $alpha: 0.3);
+  }
+  50% {
+    box-shadow: 2px 2px 2px rgba($color: #212121, $alpha: 0.3);
+  }
+
+  100% {
+    box-shadow: none;
+    border: 1px solid #dc3545;
+  }
+}
+
+.card-body {
+  display: grid;
+  grid-template-columns: 25% 60%;
+  grid-template-rows: 40% 60%;
+  grid-column-gap: 20px;
+}
+
+.thumbs {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid #dc3545;
+  overflow: hidden;
+  box-shadow: 1px 1px 5px rgba($color: #dc3545, $alpha: 0.7);
+  grid-column: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.credentials {
+  grid-column: 2 / 2;
+}
+
+.thumbs img {
+  display: block;
+  width: 100%;
+}
+
+.card-title {
+  font-weight: bold;
+  padding: 5px;
+  color: #fff;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  background: linear-gradient(to right, #dc3545, rgba($color: #212121, $alpha: 0.1));
+}
+
+.card-stats {
+  grid-row-start: 2;
+  grid-column: 1 / 3;
+}
+
+.stats-box {
+  background: linear-gradient(to bottom, #dc3545, rgba($color: #212121, $alpha: 0.9));
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.stats-box p {
+  font-size: 1.5em;
+}
+
+.level-value {
+  color: #fff;
+  line-height: 10px;
+  font-size: 2em !important;
+}

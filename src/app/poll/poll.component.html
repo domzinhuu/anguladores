@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-12">
+    <app-search-angulators></app-search-angulators>
+    <div class="text-right mt-1 mb-3">
+      <button class="btn btn-dark" [routerLink]="['/angulators/persistence']" routerLinkActive="router-link-active">+ Convocar</button>
+    </div>
+    <app-angulators-list></app-angulators-list>
+    <app-angulator-paginator [totalOfRecords]="30" [size]="3"></app-angulator-paginator>
+  </div>
+</div>
