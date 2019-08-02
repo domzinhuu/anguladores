@@ -9,7 +9,10 @@ export class PersistenceResolve implements Resolve<Angulator> {
   constructor(private angulatorService: AngulatorService) {}
   resolve(route: ActivatedRouteSnapshot): Observable<Angulator> {
     const id = route.params['id'];
-    console.log(id);
+
+    if (id) {
+      return this.angulatorService.getAngulatorById(id);
+    }
     return;
   }
 }
