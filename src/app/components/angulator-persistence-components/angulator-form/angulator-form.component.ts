@@ -1,5 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Angulator } from 'src/app/models/angulator';
 
 @Component({
   selector: 'app-angulator-form',
@@ -7,11 +9,15 @@ import { ActivatedRoute, UrlSegment } from '@angular/router';
   styleUrls: ['./angulator-form.component.scss']
 })
 export class AngulatorFormComponent implements OnInit {
+  @Input() loading: boolean;
   @Output() cancelAction = new EventEmitter();
+  @Output() submitAction = new EventEmitter();
 
   isViewing = false;
   isEditing = false;
   isCreating = false;
+
+  selectedImage: any;
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
@@ -21,7 +27,30 @@ export class AngulatorFormComponent implements OnInit {
     this.isCreating = this.activatedRoute.snapshot.data.isCreate;
   }
 
-  goBack(): void {
+  public goBack(): void {
     this.cancelAction.emit();
+  }
+
+  public sendData(ngForm: NgForm): void {
+    if (ngForm.invalid) {
+      return;
+    }
+
+    const angulatorData: Angulator = ngForm.value;
+
+    if (this.selectedImage) {
+      angulatorData.thumbs = this.selectedImage;
+    }
+
+    this.submitAction.emit(angulatorData);
+  }
+
+  public changePicture(files: any): void {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(files[0]);
+    reader.onload = event => {
+      this.selectedImage = reader.result;
+    };
   }
 }

@@ -1,94 +1,187 @@
 <div class="card">
   <div class="card-header w-100">
-    <span class="avengers">Convocar Anguladores</span>
-    <button *ngIf="isViewing" class="btn btn-secondary btn-sm float-right" (click)="goBack()" routerLinkActive="router-link-active"><fa-icon icon="arrow-circle-left" size="lg"></fa-icon> Voltar </button>
+    <span class="avengers" *ngIf="isCreating">Convocar Anguladores</span>
+    <span class="avengers" *ngIf="isEditing">Atualizar Anguladores</span>
+
+    <button *ngIf="isViewing" class="btn btn-secondary btn-sm float-right" (click)="goBack()" routerLinkActive="router-link-active">
+      <fa-icon icon="arrow-circle-left" size="lg"></fa-icon> Voltar
+    </button>
   </div>
 
   <div class="card-body bg-light">
-    <div class="row">
-      <div class="col-sm-12 col-md-6 form-group" *ngIf="isEditing || isCreating">
-        <label for="thumbs">Foto</label>
-        <input type="file" accept=".jpg,.png,.gif,.jpeg" name="thumbs" class="form-control" id="thumbs" />
-      </div>
+    <form #angulatorForm="ngForm">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 form-group" *ngIf="isEditing || isCreating">
+          <label for="thumbs">Foto</label>
+          <input
+            type="file"
+            accept=".jpg,.png,.gif,.jpeg"
+            ngModel
+            #thumbs
+            (change)="changePicture(thumbs.files)"
+            name="thumbs"
+            class="form-control"
+            id="thumbs"
+          />
+        </div>
 
-      <div class="col-sm-12 col-md-3" [class.offset-md-3]="isEditing || isCreating">
-        <div class="angulator-thumb">
-          <fa-icon icon="camera-retro" size="3x"></fa-icon>
+        <div class="col-sm-12 col-md-3" [class.offset-md-3]="isEditing || isCreating">
+          <div class="angulator-thumb">
+            <img *ngIf="selectedImage" [src]="selectedImage" alt="" />
+            <fa-icon *ngIf="!selectedImage" icon="camera-retro" size="3x"></fa-icon>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12 col-md-6 form-group">
-        <label for="alterego">Alter Ego</label>
-        <input type="text" [disabled]="isViewing" name="alterego" class="form-control" id="alterego" placeholder="Ex: TestMan, Runtimer" />
-      </div>
-      <div class="col-sm-12 col-md-6 form-group">
-        <label for="realName">Nome Real</label>
-        <input type="text" [disabled]="isViewing" name="realName" class="form-control" id="realName" placeholder="Seu nome" />
+      <div class="row">
+        <div class="col-sm-12 col-md-6 form-group">
+          <label for="alterego">Alter Ego</label>
+          <input
+            type="text"
+            [disabled]="isViewing"
+            ngModel
+            #alterego="ngModel"
+            required
+            name="alterEgo"
+            class="form-control"
+            [class.is-invalid]="alterego.invalid && alterego.dirty"
+            [class.is-valid]="alterego.valid"
+            id="alterego"
+            placeholder="Ex: TestMan, Runtimer"
+          />
+        </div>
+        <div class="col-sm-12 col-md-6 form-group">
+          <label for="realName">Nome Real</label>
+          <input
+            type="text"
+            [disabled]="isViewing"
+            ngModel
+            #realname="ngModel"
+            required
+            name="realName"
+            class="form-control"
+            [class.is-invalid]="realname.invalid && realname.dirty"
+            [class.is-valid]="realname.valid"
+            id="realName"
+            placeholder="Seu nome"
+          />
+        </div>
+
+        <div class="col-sm-12 form-group">
+          <label for="description">Sobre o Heroi</label>
+          <textarea
+            ngModel
+            #desc="ngModel"
+            required
+            name="description"
+            id="description"
+            class="form-control"
+            [class.is-invalid]="desc.invalid && desc.dirty"
+            [class.is-valid]="desc.valid"
+            cols="30"
+            rows="5"
+            [disabled]="isViewing"
+            placeholder="Fale um pouco sobre as caracteristicas do seu heroi"
+          ></textarea>
+        </div>
+
+        <div class="col-sm-12 col-md-2 form-group">
+          <label for="strength">Força</label>
+          <input
+            type="number"
+            ngModel
+            #str="ngModel"
+            required
+            name="strength"
+            [disabled]="isViewing"
+            min="0"
+            max="100"
+            class="form-control"
+            [class.is-invalid]="str.invalid && str.dirty"
+            [class.is-valid]="str.valid"
+            id="strength"
+            placeholder="00"
+          />
+        </div>
+
+        <div class="col-sm-12 col-md-2 form-group">
+          <label for="intelligence">Inteligência</label>
+          <input
+            type="number"
+            ngModel
+            #int="ngModel"
+            required
+            name="intelligence"
+            [disabled]="isViewing"
+            min="0"
+            max="100"
+            class="form-control"
+            [class.is-invalid]="int.invalid && int.dirty"
+            [class.is-valid]="int.valid"
+            id="intelligence"
+            placeholder="00"
+          />
+        </div>
+
+        <div class="col-sm-12 col-md-2 form-group">
+          <label for="dexterity">Destreza</label>
+          <input
+            type="number"
+            ngModel
+            #dex="ngModel"
+            required
+            name="dexterity"
+            [disabled]="isViewing"
+            min="0"
+            max="100"
+            class="form-control"
+            [class.is-invalid]="dex.invalid && dex.dirty"
+            [class.is-valid]="dex.valid"
+            id="dexterity"
+            placeholder="00"
+          />
+        </div>
+
+        <div class="col-sm-12 col-md-6 form-group">
+          <label for="status">Grade</label>
+          <select
+            ngModel
+            #stats="ngModel"
+            required
+            name="status"
+            id="status"
+            [disabled]="isViewing"
+            class="form-control"
+            [class.is-invalid]="stats.invalid && stats.dirty"
+            [class.is-valid]="stats.valid"
+          >
+            <option value="">Selecione</option>
+            <option value="1">Lamentável</option>
+            <option value="2">Muito Fraco</option>
+            <option value="3">Fraco</option>
+            <option value="4">Normal</option>
+            <option value="5">Bom</option>
+            <option value="6">Espetacular</option>
+            <option value="7">Épico</option>
+            <option value="8">Divino</option>
+          </select>
+        </div>
       </div>
 
-      <div class="col-sm-12 form-group">
-        <label for="description">Sobre o Heroi</label>
-        <textarea
-          name="description"
-          id="description"
-          class="form-control"
-          cols="30"
-          rows="5"
-          [disabled]="isViewing"
-          placeholder="Fale um pouco sobre as caracteristicas do seu heroi"
-        ></textarea>
-      </div>
+      <div class="row">
+        <div class="col-12 text-right" *ngIf="isCreating || isEditing">
+          <button *ngIf="!loading" class="btn btn-danger mr-2" (click)="sendData(angulatorForm)" [disabled]="angulatorForm.invalid">
+            Confirmar Convocaçao
+          </button>
+          <button *ngIf="loading" class="btn btn-danger mr-2" [disabled]="angulatorForm.invalid">
+            <fa-icon [icon]="['fas', 'spinner']" [spin]="true"></fa-icon> Aguarde...
+          </button>
+          <button class="btn btn-secondary" (click)="goBack()" routerLinkActive="router-link-active">Cancelar</button>
+        </div>
 
-      <div class="col-sm-12 col-md-2 form-group">
-        <label for="strength">Força</label>
-        <input type="number" name="strength" [disabled]="isViewing" min="0" max="100" class="form-control" id="strength" placeholder="00" />
+        <div class="col-12 text-center" *ngIf="isViewing">
+          <button class="btn btn-danger mr-2">Editar Convocado</button>
+        </div>
       </div>
-
-      <div class="col-sm-12 col-md-2 form-group">
-        <label for="intelligence">Inteligência</label>
-        <input
-          type="number"
-          name="intelligence"
-          [disabled]="isViewing"
-          min="0"
-          max="100"
-          class="form-control"
-          id="intelligence"
-          placeholder="00"
-        />
-      </div>
-
-      <div class="col-sm-12 col-md-2 form-group">
-        <label for="dexterity">Destreza</label>
-        <input type="text" name="dexterity" [disabled]="isViewing" min="0" max="100" class="form-control" id="dexterity" placeholder="00" />
-      </div>
-
-      <div class="col-sm-12 col-md-6 form-group">
-        <label for="status">Grade</label>
-        <select name="status" id="status" [disabled]="isViewing" class="form-control">
-          <option value="">Selecione</option>
-          <option value="1">Lamentável</option>
-          <option value="2">Muito Fraco</option>
-          <option value="3">Fraco</option>
-          <option value="4">Normal</option>
-          <option value="5">Bom</option>
-          <option value="6">Espetacular</option>
-          <option value="7">Épico</option>
-          <option value="8">Divino</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12 text-right" *ngIf="isCreating || isEditing">
-        <button class="btn btn-danger mr-2">Confirmar Convocaçao</button>
-        <button class="btn btn-secondary" (click)="goBack()" routerLinkActive="router-link-active">Cancelar</button>
-      </div>
-
-      <div class="col-12 text-center" *ngIf="isViewing">
-        <button class="btn btn-danger mr-2">Editar Convocado</button>
-      </div>
-    </div>
+    </form>
   </div>
 </div>

@@ -3,10 +3,13 @@
     <span class="h2 avengers">Anguladores na liga</span>
   </div>
   <div class="col-sm-12 col-md-6">
-    <div class="form-group search-form">
-      <input type="text" placeholder="Procurar Angulador" class="form-control" />
-      <button class="btn btn-danger">Buscar</button>
-    </div>
+    <form (submit)="searchButtonClick(query.value)">
+      <div class="form-group search-form">
+        <input type="text" placeholder="Procurar Angulador" name="query" ngModel #query="ngModel" class="form-control" />
+        <button *ngIf="!loading" class="btn btn-danger" (click)="searchButtonClick(query.value)">Buscar</button>
+        <button *ngIf="loading" class="btn btn-danger" disabled>Buscando ...</button>
+      </div>
+    </form>
   </div>
 
   <div class="col-12">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-search-angulators',
@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-angulators.component.scss']
 })
 export class SearchAngulatorsComponent implements OnInit {
+  @Input() loading: boolean;
+  @Output() doSearch = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  public searchButtonClick(query: string): void {
+    this.doSearch.emit(query);
   }
-
 }

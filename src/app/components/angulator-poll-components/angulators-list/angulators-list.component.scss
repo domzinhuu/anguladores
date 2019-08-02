@@ -10,7 +10,7 @@
 
 .card:hover {
   animation-name: card-animation;
-  animation-duration: .5s;
+  animation-duration: 0.5s;
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
   cursor: pointer;
@@ -33,7 +33,7 @@
 .card-body {
   display: grid;
   grid-template-columns: 25% 60%;
-  grid-template-rows: 40% 60%;
+  grid-template-rows: 50% 50%;
   grid-column-gap: 20px;
 }
 
@@ -88,4 +88,12 @@
   color: #fff;
   line-height: 10px;
   font-size: 2em !important;
+}
+
+::ng-deep .ngx-pagination .current {
+  background: #dc3545 !important;
+}
+
+.empty-container {
+  text-align: center;
 }

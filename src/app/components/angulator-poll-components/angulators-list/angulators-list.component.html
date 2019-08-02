@@ -1,58 +1,42 @@
-<div class="row animated fadeIn">
-  <div class="col-sm-12 col-md-4 mb-4">
-    <div class="card border-light bg-light">
+<div *ngIf="data && data.length" class="row animated fadeIn">
+  <div
+    class="col-sm-12 col-md-4 mb-4"
+    *ngFor="let angulator of data | paginate: { itemsPerPage: size, currentPage: page, totalItems: totalRegister }"
+  >
+    <div class="card border-light bg-light" (click)="clickOnCard(angulator.id)">
       <div class="card-body">
         <div class="thumbs">
-          <img src="assets/img/perfil.jpg" alt="thumb" />
+          <img *ngIf="angulator.thumbs" [src]="angulator.thumbs" alt="thumb" />
+          <fa-icon *ngIf="!angulator.thumbs" icon="camera-retro" size="lg"></fa-icon>
         </div>
         <div class="credentials">
-          <p class="card-title">SpeedMan</p>
-          <span class="text-muted pl-2">Maique Rosa</span>
+          <p class="card-title">{{ angulator.alterEgo }}</p>
+          <span class="text-muted pl-2">{{ angulator.realName }}</span>
         </div>
         <div class="card-stats ">
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit cum, neque voluptas laudantium aliquam harum aliquid at error.
+            {{ sliceText(angulator.description) }}
           </p>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="col-sm-12 col-md-4 mb-4">
-    <div class="card border-light bg-light">
-      <div class="card-body">
-        <div class="thumbs">
-          <img src="https://a248.e.akamai.net/secure.meetupstatic.com/photos/event/8/1/9/5/600_450693173.jpeg" alt="thumb" />
-        </div>
-        <div class="credentials">
-          <p class="card-title">TheCreator</p>
-          <span class="text-muted pl-2">Misko Hevery</span>
-        </div>
-        <div class="card-stats ">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit cum, neque voluptas laudantium aliquam harum aliquid at error.
-          </p>
-        </div>
-      </div>
-    </div>
+<div *ngIf="!data || !data.length" class="row">
+  <div class="col-12 empty-container">
+    <h1 class="text-muted">Nenhum Angulador Encontrado</h1>
+    <p class="text-muted">Convoque um agora mesmo!</p>
   </div>
-
-  <div class="col-sm-12 col-md-4 mb-4">
-    <div class="card border-light bg-light">
-      <div class="card-body">
-        <div class="thumbs">
-          <img src="https://voxxeddays.com/athens/wp-content/uploads/sites/52/2019/01/28903801688_c4d5a2c424_h.jpg" alt="thumb" />
-        </div>
-        <div class="credentials">
-          <p class="card-title">GadgetGuy</p>
-          <span class="text-muted pl-2">John Papa</span>
-        </div>
-        <div class="card-stats ">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit cum, neque voluptas laudantium aliquam harum aliquid at error.
-          </p>
-        </div>
-      </div>
-    </div>
+</div>
+<div class="row" *ngIf="data && data.length">
+  <div class="col-12 text-center">
+    <pagination-controls
+      [autoHide]="true"
+      [maxSize]="10"
+      nextLabel="Próximo"
+      previousLabel="Anterior"
+      (pageChange)="pageClick($event)"
+    ></pagination-controls>
   </div>
 </div>

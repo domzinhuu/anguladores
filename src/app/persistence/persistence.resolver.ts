@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AngulatorForm } from '../components/angulator-persistence-components/angulator-form/angulator-form';
+import { Angulator } from '../models/angulator';
+import { AngulatorService } from '../services/angulator.service';
 
 @Injectable({ providedIn: 'root' })
-export class PersistenceResolve implements Resolve<AngulatorForm> {
-  resolve(route: ActivatedRouteSnapshot): Observable<AngulatorForm> {
+export class PersistenceResolve implements Resolve<Angulator> {
+  constructor(private angulatorService: AngulatorService) {}
+  resolve(route: ActivatedRouteSnapshot): Observable<Angulator> {
+    const id = route.params['id'];
+    console.log(id);
     return;
   }
 }

@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
-import { AngulatorPaginatorComponent } from './angulator-paginator/angulator-paginator.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { SearchAngulatorsComponent } from './search-angulators/search-angulators.component';
 import { AngulatorsListComponent } from './angulators-list/angulators-list.component';
-import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  imports: [CommonModule],
-  exports: [AngulatorPaginatorComponent, SearchAngulatorsComponent, AngulatorsListComponent],
-  declarations: [AngulatorPaginatorComponent, SearchAngulatorsComponent, AngulatorsListComponent],
+  imports: [CommonModule, FormsModule, NgxPaginationModule, FontAwesomeModule],
+  exports: [SearchAngulatorsComponent, AngulatorsListComponent, NgxPaginationModule],
+  declarations: [SearchAngulatorsComponent, AngulatorsListComponent],
   providers: []
 })
 export class AngulatorPollModule {}

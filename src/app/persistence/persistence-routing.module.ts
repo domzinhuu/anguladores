@@ -15,7 +15,7 @@ const routes: Routes = [
     data: { isCreate: true, isView: false, isEdit: false }
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: PersistenceComponent,
     data: { isCreate: false, isView: false, isEdit: true },
     resolve: {
@@ -23,7 +23,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'view',
+    path: 'view/:id',
     component: PersistenceComponent,
     data: { isCreate: false, isView: true, isEdit: false },
     resolve: {

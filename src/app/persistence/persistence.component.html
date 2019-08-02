@@ -1,1 +1,4 @@
-<app-angulator-form (cancelAction)="goBack()"></app-angulator-form>
+<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+  {{ errorMessage }}
+</div>
+<app-angulator-form [loading]="isLoading" (cancelAction)="goBack()" (submitAction)="callAngulators($event)"></app-angulator-form>
