@@ -39,7 +39,7 @@ export class PollComponent implements OnInit {
   }
 
   public view(id: number): void {
-    this.router.navigate(['/angulators/persistence/view', id]);
+    this.router.navigate(['/angulators/persistence/review', id]);
   }
 
   public pageChange(page: number): void {

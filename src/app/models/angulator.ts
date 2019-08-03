@@ -1,4 +1,5 @@
 export class Angulator {
+  public id: number;
   public alterEgo: string;
   public realName: string;
   public thumbs: string;

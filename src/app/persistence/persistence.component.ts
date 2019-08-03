@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AngulatorService } from '../services/angulator.service';
+import { Angulator } from '../models/angulator';
 
 @Component({
   selector: 'app-persistence',
@@ -10,9 +11,12 @@ import { AngulatorService } from '../services/angulator.service';
 export class PersistenceComponent implements OnInit {
   errorMessage: string;
   isLoading: boolean;
-  constructor(private router: Router, private angulatorService: AngulatorService) {}
+  angulatorSelected: Angulator;
+  constructor(private router: Router, private angulatorService: AngulatorService, private activatedRouter: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.angulatorSelected = this.activatedRouter.snapshot.data['angulator'];
+  }
 
   goBack(): void {
     this.router.navigateByUrl('angulators/poll');
@@ -20,6 +24,7 @@ export class PersistenceComponent implements OnInit {
 
   public callAngulators(angulatorData: any): void {
     this.isLoading = true;
+
     this.angulatorService.saveAngulator(angulatorData).subscribe(
       res => {
         this.isLoading = false;

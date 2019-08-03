@@ -18,6 +18,9 @@ export class AngulatorService {
   }
 
   public saveAngulator(angulator: Angulator): Observable<any> {
+    if (angulator.id) {
+      return this.http.put(this.url + '/' + angulator.id, angulator);
+    }
     return this.http.post(this.url, angulator);
   }
 

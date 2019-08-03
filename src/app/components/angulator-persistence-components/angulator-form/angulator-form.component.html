@@ -38,6 +38,7 @@
           <input
             type="text"
             [disabled]="isViewing"
+            [(ngModel)]="data.alterEgo"
             ngModel
             #alterego="ngModel"
             required
@@ -56,6 +57,7 @@
             [disabled]="isViewing"
             ngModel
             #realname="ngModel"
+            [(ngModel)]="data.realName"
             required
             name="realName"
             class="form-control"
@@ -71,6 +73,7 @@
           <textarea
             ngModel
             #desc="ngModel"
+            [(ngModel)]="data.description"
             required
             name="description"
             id="description"
@@ -90,6 +93,7 @@
             type="number"
             ngModel
             #str="ngModel"
+            [(ngModel)]="data.strength"
             required
             name="strength"
             [disabled]="isViewing"
@@ -109,6 +113,7 @@
             type="number"
             ngModel
             #int="ngModel"
+            [(ngModel)]="data.intelligence"
             required
             name="intelligence"
             [disabled]="isViewing"
@@ -128,6 +133,7 @@
             type="number"
             ngModel
             #dex="ngModel"
+            [(ngModel)]="data.dexterity"
             required
             name="dexterity"
             [disabled]="isViewing"
@@ -146,6 +152,7 @@
           <select
             ngModel
             #stats="ngModel"
+            [(ngModel)]="data.status"
             required
             name="status"
             id="status"
@@ -179,7 +186,7 @@
         </div>
 
         <div class="col-12 text-center" *ngIf="isViewing">
-          <button class="btn btn-danger mr-2">Editar Convocado</button>
+          <button (click)="goToEdit()" class="btn btn-danger mr-2">Editar Convocado</button>
         </div>
       </div>
     </form>
