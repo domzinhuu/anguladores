@@ -13,14 +13,6 @@ const routes: Routes = [
     path: 'create',
     component: PersistenceComponent,
     data: { isCreate: true, isView: false, isEdit: false }
-  },
-  {
-    path: 'review/:id',
-    component: PersistenceComponent,
-    data: { isCreate: false, isView: true, isEdit: false },
-    resolve: {
-      angulator: PersistenceResolve
-    }
   }
 ];
 

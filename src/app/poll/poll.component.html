@@ -1,18 +1,5 @@
 <div class="row">
   <div class="col-12">
-    <app-search-angulators (doSearch)="search($event)" [loading]="isLoading"></app-search-angulators>
-    <div class="text-right mt-1 mb-3">
-      <button class="btn btn-dark" [routerLink]="['/angulators/persistence']" routerLinkActive="router-link-active">+ Convocar</button>
-    </div>
-
-    <app-angulators-list
-      [data]="$angulators | async"
-      [pagination]="true"
-      [size]="size"
-      [page]="page"
-      [totalRegister]="totalRegister"
-      (paginationEvent)="pageChange($event)"
-      (cardClick)="view($event)"
-    ></app-angulators-list>
+   <h1>Component de poll</h1>
   </div>
 </div>

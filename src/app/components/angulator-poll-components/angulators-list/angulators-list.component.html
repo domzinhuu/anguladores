@@ -1,21 +1,17 @@
-<div *ngIf="data && data.length" class="row animated fadeIn">
-  <div
-    class="col-sm-12 col-md-4 mb-4"
-    *ngFor="let angulator of data | paginate: { itemsPerPage: size, currentPage: page, totalItems: totalRegister }"
-  >
-    <div class="card border-light bg-light" (click)="clickOnCard(angulator.id)">
+<div class="row animated fadeIn">
+  <div class="col-sm-12 col-md-4 mb-4">
+    <div class="card border-light bg-light">
       <div class="card-body">
         <div class="thumbs">
-          <img *ngIf="angulator.thumbs" [src]="angulator.thumbs" alt="thumb" />
-          <fa-icon *ngIf="!angulator.thumbs" icon="camera-retro" size="lg"></fa-icon>
+          <fa-icon icon="camera-retro" size="lg"></fa-icon>
         </div>
         <div class="credentials">
-          <p class="card-title">{{ angulator.alterEgo }}</p>
-          <span class="text-muted pl-2">{{ angulator.realName }}</span>
+          <p class="card-title">Alter ego</p>
+          <span class="text-muted pl-2">Nome Real</span>
         </div>
         <div class="card-stats ">
           <p>
-            {{ sliceText(angulator.description) }}
+           Descrição do angulador...
           </p>
         </div>
       </div>
@@ -23,20 +19,14 @@
   </div>
 </div>
 
-<div *ngIf="!data || !data.length" class="row">
+<div *ngIf="false" class="row">
   <div class="col-12 empty-container">
     <h1 class="text-muted">Nenhum Angulador Encontrado</h1>
     <p class="text-muted">Convoque um agora mesmo!</p>
   </div>
 </div>
-<div class="row" *ngIf="data && data.length">
+<div class="row">
   <div class="col-12 text-center">
-    <pagination-controls
-      [autoHide]="true"
-      [maxSize]="10"
-      nextLabel="Próximo"
-      previousLabel="Anterior"
-      (pageChange)="pageClick($event)"
-    ></pagination-controls>
+    Paginação......
   </div>
 </div>
